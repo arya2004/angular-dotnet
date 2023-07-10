@@ -9,7 +9,7 @@
       <span class="mb-2">{{product.price | currency:'INR'}} </span>
       <div class="btn-group mt-auto">
         <button class="btn btn-outline-secondary fa fa-shopping-cart me-2"></button>
-        <button class="btn btn-outline-primary ">View</button>
+        <button routerLink="{{product.productId}}"  class="btn btn-outline-primary ">View</button>
       </div>
     </div>
   </div>

@@ -9,6 +9,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { SectionHeaderComponent } from './section-header/section-header.component';
 import { BreadcrumbComponent, BreadcrumbModule } from 'xng-breadcrumb';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { BasketService } from '../basket/basket.service';
+import { BasketModule } from '../basket/basket.module';
 
 
 
@@ -29,7 +31,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     }),
     
     BreadcrumbModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+  
   ],
   exports:
   [

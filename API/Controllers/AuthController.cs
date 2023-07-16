@@ -23,17 +23,17 @@ namespace API.Controllers
         private readonly IMapper mapper;
         private readonly ClaimsPrincipal claimsPrincipal;
 
-        public AuthController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ITokenService tokenService,ClaimsPrincipal claimsPrincipal, IMapper mapper)
+        public AuthController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, ITokenService tokenService,ClaimsPrincipal _claimsPrincipal, IMapper mapper)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _tokenService = tokenService;
             this.mapper = mapper;
-            claimsPrincipal = claimsPrincipal;
+            claimsPrincipal = _claimsPrincipal;
         }
 
 
-
+        
         [Authorize]
         [HttpGet]
         public async Task<ActionResult<UserDto>> GetCurrentUser()
@@ -113,7 +113,11 @@ namespace API.Controllers
 
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
-        {
+        {   
+            if(CheckEmailExistsAsync(registerDto.Email).Result.Value)
+            {
+                return new BadRequestObjectResult(new ApiValidationErrorResponse { Error = new [] {"Email in use"}});
+            }
             var user = new AppUser
             {
                 DisplayName = registerDto.DisplayName,

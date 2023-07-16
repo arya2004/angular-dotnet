@@ -6,8 +6,9 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 namespace Infrastructure.Data
 {
     public class AppDbContext : DbContext
-    {
-        public AppDbContext(DbContextOptions options) : base(options)
+    {   
+        //specifiy option for one db context
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
 

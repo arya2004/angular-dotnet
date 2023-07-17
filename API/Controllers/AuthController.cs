@@ -33,7 +33,7 @@ namespace API.Controllers
         }
 
 
-        
+
         [Authorize]
         [HttpGet]
         public async Task<ActionResult<UserDto>> GetCurrentUser()
@@ -41,6 +41,7 @@ namespace API.Controllers
             var email = HttpContext.User?.Claims?.FirstOrDefault(x => x.Type == ClaimTypes.Email)?.Value;
 
             var user = await _userManager.FindByEmailAsync(email);
+
             return new UserDto
             {
                 Email = user.Email,

@@ -11,6 +11,7 @@ import { BreadcrumbComponent, BreadcrumbModule } from 'xng-breadcrumb';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BasketService } from '../basket/basket.service';
 import { BasketModule } from '../basket/basket.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -29,7 +30,7 @@ import { BasketModule } from '../basket/basket.module';
       positionClass: 'toast-bottom-right',
       preventDuplicates: true
     }),
-    
+    SharedModule,
     BreadcrumbModule,
     NgxSpinnerModule,
   

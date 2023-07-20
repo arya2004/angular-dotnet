@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace Core.Models.OrderAggregate
 {
-    [Keyless]
+    
     public class DeliveryMethod
     {
+        public int DeliveryMethodId { get; set; }
         public string ShortName { get; set; }
         public string DeliveryTime { get; set; }
         public string Description { get; set; }

@@ -15,11 +15,7 @@ namespace Infrastructure.Data.Config
         {
             
          
-            builder.Property(s => s.Status)
-                .HasConversion(
-                    o => o.ToString(),
-                    o => (OrderStatus)Enum.Parse(typeof(OrderStatus), o)
-                );
+            
             builder.HasMany(o => o.OrderItems).WithOne().OnDelete(DeleteBehavior.Cascade);
         }
     }

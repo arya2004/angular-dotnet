@@ -14,7 +14,7 @@ namespace Core.Models.OrderAggregate
             
         }
 
-        public Order(int orderId, string buyerEmail, DateTime orderDate, string firstName, string lastName, string street, string city, string state, string postalCode, DeliveryMethod deliveryMethod, IReadOnlyList<OrderItem> orderItems, decimal subTotal, OrderStatus status, string paymentIntentId)
+        public Order(int orderId, string buyerEmail, DateTime orderDate, string firstName, string lastName, string street, string city, string state, string postalCode, string shortName, string deliveryTime, string description, string price, IReadOnlyList<OrderItem> orderItems, decimal subTotal, string status, string paymentIntentId)
         {
             OrderId = orderId;
             BuyerEmail = buyerEmail;
@@ -25,7 +25,10 @@ namespace Core.Models.OrderAggregate
             City = city;
             State = state;
             PostalCode = postalCode;
-            DeliveryMethod = deliveryMethod;
+            ShortName = shortName;
+            DeliveryTime = deliveryTime;
+            Description = description;
+            Price = price;
             OrderItems = orderItems;
             SubTotal = subTotal;
             Status = status;
@@ -41,15 +44,18 @@ namespace Core.Models.OrderAggregate
         public string City { get; set; }
         public string State { get; set; }
         public string PostalCode { get; set; }
-        public DeliveryMethod DeliveryMethod { get; set; }
+        public string ShortName { get; set; }
+        public string DeliveryTime { get; set; }
+        public string Description { get; set; }
+        public string Price { get; set; }
         public IReadOnlyList<OrderItem> OrderItems { get; set; }
         public decimal SubTotal { get; set; }
-        public OrderStatus Status { get; set; } = OrderStatus.Pending;
+        public string Status { get; set; } = "Pending";
         public string PaymentIntentId { get; set; }
 
         public string GetTotal()
         {
-            return SubTotal + DeliveryMethod.Price;
+            return SubTotal + Price;
         }
 
     }

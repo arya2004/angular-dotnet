@@ -24,43 +24,36 @@ namespace Infrastructure.Data
         {
             
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Order>()
-        .HasOne(o => o.DeliveryMethod)
-        .WithMany();
+            
         
-            modelBuilder
-        .Entity<DeliveryMethod>(
-            eb =>
-            {
-                eb.HasNoKey();
-                eb.ToView("View_DeliveryMethod");
-            });
+        
 
 
             modelBuilder.Entity<DeliveryMethod>().HasData(
             new DeliveryMethod{
-               
+     DeliveryMethodId = 1,          
     ShortName= "UPS1",
     Description= "Fastest delivery time",
     DeliveryTime= "1-2 Days",
     Price= "10"
   }, new DeliveryMethod
   {
-               
-    ShortName= "UPS2",
+      DeliveryMethodId = 2,
+      ShortName = "UPS2",
     Description= "Get it within 5 days",
     DeliveryTime= "2-5 Days",
     Price= "5"
   }, new DeliveryMethod
-  {
+  {DeliveryMethodId = 3,
+
     ShortName= "UPS3",
     Description= "Slower but cheap",
     DeliveryTime= "5-10 Days",
     Price= "2"
   }, new DeliveryMethod
   {
-                
-    ShortName= "FREE",
+      DeliveryMethodId = 4,
+      ShortName = "FREE",
     Description= "Free! You get what you pay for",
     DeliveryTime= "1-2 Weeks",
     Price= "free"

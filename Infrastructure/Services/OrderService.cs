@@ -1,6 +1,7 @@
 ﻿using Core.Interfaces;
 using Core.Models;
 using Core.Models.OrderAggregate;
+using Humanizer;
 using Microsoft.AspNetCore.Http.HttpResults;
 using System;
 using System.Collections.Generic;
@@ -25,16 +26,26 @@ namespace Infrastructure.Services
             _pridRepo = pridRepo;
             _basketRepository = basketRepository;
         }
-        public async Task<Order> CreateOrderAsync(string buyer, int deliveryMethod, string basketId, Address shippingAddress)
-        {
+        public async Task<Order> CreateOrderAsync(string buyer, int deliveryMethodId, string basketId, Address shippingAddress)
+        {   //get basket from repo
             var basket = await _basketRepository.GetBasketAsync(basketId);
+            //get items from  product repo
             var items = new List<OrderItem>();
             foreach (var item in basket.Items)
             {
                 var productItem = await _pridRepo.GetByIdAsync(item.Id);
-                var itemOrders = new ProductItemOrdered();
+                var itemOrders = new ProductItemOrdered(productItem.ProductId, productItem.Name,productItem.PictureUrl );
+                var orderItem = new OrderItem(itemOrders.ProductItemId, itemOrders.ProductName, itemOrders.PictureUrl, productItem.Price, item.Quantity);
+                items.Add(orderItem);
             }
-            return null;
+            //get deliery method
+            var deliveryMethod = await _dmRepo.GetByIdAsync(deliveryMethodId);
+            //calculate subtotal
+            var subTotal = items.Sum(item => item.Price * item.Quantity);
+            //create order
+            var order = new Order(buyer, shippingAddress, deliveryMethod,items, subTotal,"temp");
+
+            return order;
         }
 
         public Task<IReadOnlyList<DeliveryMethod>> GetDeliveryMethod()

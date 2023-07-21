@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,16 +14,16 @@ namespace Core.Models.OrderAggregate
         {
         }
 
-        public OrderItem(int orderItemId, int productItemId, string productName, string pictureUrl, decimal price, int quantity)
+        public OrderItem( int productItemId, string productName, string pictureUrl, decimal price, int quantity)
         {
-            OrderItemId = orderItemId;
+           
             ProductItemId = productItemId;
             ProductName = productName;
             PictureUrl = pictureUrl;
             Price = price;
             Quantity = quantity;
         }
-
+        [Key]
         public int OrderItemId { get; set; }
         public int ProductItemId { get; set; }
         public string ProductName { get; set; }

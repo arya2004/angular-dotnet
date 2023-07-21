@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -14,27 +15,30 @@ namespace Core.Models.OrderAggregate
             
         }
 
-        public Order(int orderId, string buyerEmail, DateTime orderDate, string firstName, string lastName, string street, string city, string state, string postalCode, string shortName, string deliveryTime, string description, string price, IReadOnlyList<OrderItem> orderItems, decimal subTotal, string status, string paymentIntentId)
+        public Order( string buyerEmail, Address address , DeliveryMethod deliveryMethod, IReadOnlyList<OrderItem> orderItems, decimal subTotal,  string paymentIntentId)
         {
-            OrderId = orderId;
+            
             BuyerEmail = buyerEmail;
-            OrderDate = orderDate;
-            FirstName = firstName;
-            LastName = lastName;
-            Street = street;
-            City = city;
-            State = state;
-            PostalCode = postalCode;
-            ShortName = shortName;
-            DeliveryTime = deliveryTime;
-            Description = description;
-            Price = price;
+           
+
+            FirstName = address.FirstName;
+            LastName = address.LastName;
+            Street = address.Street;
+            City = address.City;
+            State = address.State;
+            PostalCode = address.PostalCode;
+
+            ShortName = deliveryMethod.ShortName;
+            DeliveryTime = deliveryMethod.DeliveryTime;
+            Description = deliveryMethod.Description;
+            Price = deliveryMethod.Price;
+
+
             OrderItems = orderItems;
             SubTotal = subTotal;
-            Status = status;
             PaymentIntentId = paymentIntentId;
         }
-
+        [Key]
         public int OrderId { get; set; }
         public string BuyerEmail { get; set; }
         public DateTime OrderDate { get; set; } = DateTime.UtcNow;

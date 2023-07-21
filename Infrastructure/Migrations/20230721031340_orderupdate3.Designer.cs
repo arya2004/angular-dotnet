@@ -4,6 +4,7 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230721031340_orderupdate3")]
+    partial class orderupdate3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -228,188 +231,6 @@ namespace Infrastructure.Migrations
                     b.HasIndex("ProductTypeId");
 
                     b.ToTable("Products");
-
-                    b.HasData(
-                        new
-                        {
-                            ProductId = 1,
-                            Description = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-                            Name = "Angular Speedster Board 2000",
-                            PictureUrl = "images/products/sb-ang1.png",
-                            Price = 200m,
-                            ProductBrandId = 37,
-                            ProductTypeId = 26
-                        },
-                        new
-                        {
-                            ProductId = 2,
-                            Description = "Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.",
-                            Name = "Green Angular Board 3000",
-                            PictureUrl = "images/products/sb-ang2.png",
-                            Price = 150m,
-                            ProductBrandId = 37,
-                            ProductTypeId = 25
-                        },
-                        new
-                        {
-                            ProductId = 3,
-                            Description = "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
-                            Name = "Core Board Speed Rush 3",
-                            PictureUrl = "images/products/sb-core1.png",
-                            Price = 180m,
-                            ProductBrandId = 39,
-                            ProductTypeId = 26
-                        },
-                        new
-                        {
-                            ProductId = 4,
-                            Description = "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
-                            Name = "Net Core Super Board",
-                            PictureUrl = "images/products/sb-core2.png",
-                            Price = 300m,
-                            ProductBrandId = 39,
-                            ProductTypeId = 26
-                        },
-                        new
-                        {
-                            ProductId = 5,
-                            Description = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-                            Name = "React Board Super Whizzy Fast",
-                            PictureUrl = "images/products/sb-react1.png",
-                            Price = 250m,
-                            ProductBrandId = 40,
-                            ProductTypeId = 25
-                        },
-                        new
-                        {
-                            ProductId = 6,
-                            Description = "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.",
-                            Name = "Typescript Entry Board",
-                            PictureUrl = "images/products/sb-ts1.png",
-                            Price = 120m,
-                            ProductBrandId = 41,
-                            ProductTypeId = 25
-                        },
-                        new
-                        {
-                            ProductId = 19,
-                            Description = "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-                            Name = "Core Blue Hat",
-                            PictureUrl = "images/products/hat-core1.png",
-                            Price = 10m,
-                            ProductBrandId = 38,
-                            ProductTypeId = 26
-                        },
-                        new
-                        {
-                            ProductId = 7,
-                            Description = "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
-                            Name = "Green React Woolen Hat",
-                            PictureUrl = "images/products/hat-react1.png",
-                            Price = 8m,
-                            ProductBrandId = 40,
-                            ProductTypeId = 26
-                        },
-                        new
-                        {
-                            ProductId = 8,
-                            Description = "Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-                            Name = "Purple React Woolen Hat",
-                            PictureUrl = "images/products/hat-react2.png",
-                            Price = 15m,
-                            ProductBrandId = 40,
-                            ProductTypeId = 26
-                        },
-                        new
-                        {
-                            ProductId = 9,
-                            Description = "Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.",
-                            Name = "Blue Code Gloves",
-                            PictureUrl = "images/products/glove-code1.png",
-                            Price = 18m,
-                            ProductBrandId = 39,
-                            ProductTypeId = 28
-                        },
-                        new
-                        {
-                            ProductId = 10,
-                            Description = "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
-                            Name = "Green Code Gloves",
-                            PictureUrl = "images/products/glove-code2.png",
-                            Price = 15m,
-                            ProductBrandId = 39,
-                            ProductTypeId = 28
-                        },
-                        new
-                        {
-                            ProductId = 20,
-                            Description = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa.",
-                            Name = "Purple React Gloves",
-                            PictureUrl = "images/products/glove-react1.png",
-                            Price = 16m,
-                            ProductBrandId = 40,
-                            ProductTypeId = 28
-                        },
-                        new
-                        {
-                            ProductId = 11,
-                            Description = "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
-                            Name = "Green React Gloves",
-                            PictureUrl = "images/products/glove-react2.png",
-                            Price = 14m,
-                            ProductBrandId = 40,
-                            ProductTypeId = 28
-                        },
-                        new
-                        {
-                            ProductId = 12,
-                            Description = "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
-                            Name = "Redis Red Boots",
-                            PictureUrl = "images/products/boot-redis1.png",
-                            Price = 250m,
-                            ProductBrandId = 42,
-                            ProductTypeId = 27
-                        },
-                        new
-                        {
-                            ProductId = 13,
-                            Description = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
-                            Name = "Core Red Boots",
-                            PictureUrl = "images/products/boot-core2.png",
-                            Price = 189m,
-                            ProductBrandId = 39,
-                            ProductTypeId = 27
-                        },
-                        new
-                        {
-                            ProductId = 14,
-                            Description = "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
-                            Name = "Core Purple Boots",
-                            PictureUrl = "images/products/boot-core1.png",
-                            Price = 199m,
-                            ProductBrandId = 38,
-                            ProductTypeId = 27
-                        },
-                        new
-                        {
-                            ProductId = 15,
-                            Description = "Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.",
-                            Name = "Angular Purple Boots",
-                            PictureUrl = "images/products/boot-ang2.png",
-                            Price = 150m,
-                            ProductBrandId = 37,
-                            ProductTypeId = 27
-                        },
-                        new
-                        {
-                            ProductId = 16,
-                            Description = "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
-                            Name = "Angular Blue Boots",
-                            PictureUrl = "images/products/boot-ang1.png",
-                            Price = 180m,
-                            ProductBrandId = 39,
-                            ProductTypeId = 27
-                        });
                 });
 
             modelBuilder.Entity("Core.Models.ProductBrand", b =>

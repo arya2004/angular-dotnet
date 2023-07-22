@@ -12,7 +12,7 @@ namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class OrderController : ControllerBase
     {   
         private readonly IOrderService _orderService;
@@ -36,5 +36,31 @@ namespace API.Controllers
             }
             return Ok(order);
         }
+
+        [HttpGet]
+        public async Task<ActionResult<IReadOnlyList<OrderToReturnDto>>> GetOrdersForUSer()
+        {
+            var email = HttpContext.User.FindFirstValue(ClaimTypes.Email);
+
+            var orders = await _orderService.GetOrderForUserAsync(email);
+            return Ok(_mapper.Map<OrderToReturnDto>(orders));
+        }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<OrderToReturnDto>> GetOrderByIdForUser(int id)
+        {
+            var email = HttpContext.User.FindFirstValue(ClaimTypes.Email);
+            var order = await _orderService.GetOrderByIdAsync(id, email);
+            if(order == null)
+            {
+                return NotFound(new ApiResponse(404));
+            }
+            return Ok(_mapper.Map<OrderToReturnDto>(order));
+        }
+        [HttpGet("DeliveryMethods")]
+        public async Task<ActionResult<IReadOnlyList<DeliveryMethod>>> GetDeliveryMethods()
+        {
+            return Ok(await _orderService.GetDeliveryMethod());
+        }
+
     }
 }
